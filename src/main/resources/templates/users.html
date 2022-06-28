@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div align="center"><h1>Welcome Users</h1></div>
+    <div align="center">
+<!--        <button type="button" class="btn btn-success">Success</button>-->
+        <a class="h3 m-2" th:href="@{/users/new}" style="text-decoration:none">New Users</a>
+    </div>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+
+<div>
+    <table class="table table-bordered" id="users">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Password</th>
+                <th>enabled</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="user:${listUsers}">
+            <tr>
+                <td>[[${user.id}]]</td>
+                <td>[[${user.email}]]</td>
+                <td>[[${user.nombre}]]</td>
+                <td>[[${user.apellido}]]</td>
+                <td>[[${user.password}]]</td>
+                <td>[[${user.enabled}]]</td>
+
+                <td>
+                    <a class="h4 mr-4" th:href="@{'/users/edit/' + ${user.id}}" style="text-decoration:none">Edit</a>
+                    <a class="h4 mr-4" th:href="@{'/users/delete/' + ${user.id}}" style="text-decoration:none">Delete</a>
+<!--                    <button type="button" class="btn btn-primary">Primary</button>-->
+<!--                    <button type="button" class="btn btn-danger">Danger</button>-->
+                </td>
+            </tr>
+
+        </th:block>
+
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
